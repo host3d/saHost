@@ -14,8 +14,13 @@ class CssEditor(QWidget,Ui_cssEditor):
 
         self.setupUi(self)
 
+        self.settings = QSettings("cssEditor")
+        self.restoreGeometry(self.settings.value("geometry").toByteArray())
         self.cssPath = os.path.join(os.path.dirname(__file__), 'ui', 'style.qss')
+        self.setStyleSheet(readCss(self.cssPath))
         self.css = {}
+
+        self.tw_css.currentItemChanged.connect(self.showItem)
 
         self.importCss()
         self.showCss()
@@ -27,10 +32,9 @@ class CssEditor(QWidget,Ui_cssEditor):
         self.tw_css.clear()
 
         root = self.tw_css.invisibleRootItem()
-
         for objName, attrs in self.css.items():
             obj = QTreeWidgetItem()
-            obj.setText(0, objName)
+            obj.setText(0,objName)
             for attrName, value in attrs.items():
                 attr = QTreeWidgetItem()
                 attr.setText(1, attrName)
@@ -38,10 +42,15 @@ class CssEditor(QWidget,Ui_cssEditor):
                 obj.addChild(attr)
 
             root.addChild(obj)
+            obj.setExpanded(True)
 
+        self.tw_css.header().setResizeMode(QHeaderView.ResizeToContents)
 
+    def showItem(self, item):
+        print item.text(2)
 
-
+    def closeEvent(self, e):
+        self.settings.setValue("geometry", self.saveGeometry())
 
 
 if __name__ == '__main__':

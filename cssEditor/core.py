@@ -3,6 +3,15 @@ import os
 
 from pprint import pprint as pp
 
+def readCss(path):
+    res = ''
+    if not os.path.exists(path):
+        print "File %s doesn't exists !"
+        return res
+    with open(path, 'r') as f:
+        res = f.read()
+    return res
+
 
 def getCssData(path):
     res = ''
