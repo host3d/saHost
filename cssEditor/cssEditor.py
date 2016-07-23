@@ -8,6 +8,12 @@ from ui.cssQTreeWidget import CssQTreeWidget
 
 
 
+class Attribute(QTreeWidgetItem):
+    def __init__(self, parent=None):
+        super(Attribute, self).__init__(parent)
+        self.setFlags(self.flags() | Qt.ItemIsEditable)
+
+
 class CssEditor(QWidget,Ui_cssEditor):
     def __init__(self, parent=None):
         super(CssEditor, self).__init__(parent)
@@ -21,7 +27,7 @@ class CssEditor(QWidget,Ui_cssEditor):
         self.css = {}
 
         self.tw_css.currentItemChanged.connect(self.showItem)
-
+        self.tw_css.setEditTriggers(QAbstractItemView.DoubleClicked)
         self.importCss()
         self.showCss()
 
@@ -36,7 +42,7 @@ class CssEditor(QWidget,Ui_cssEditor):
             obj = QTreeWidgetItem()
             obj.setText(0,objName)
             for attrName, value in attrs.items():
-                attr = QTreeWidgetItem()
+                attr = Attribute()
                 attr.setText(1, attrName)
                 attr.setText(2, value)
                 obj.addChild(attr)
