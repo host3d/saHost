@@ -23,6 +23,13 @@ EXERCICE 01 :
                 range(10)
                 -> result : [0,1,2,3,4,5,6,7,8,9]
 
+    merci de me copier votre code dans un fichier python avec votre nom de user ici :
+    /s/prods/captain/_sandbox/salexis/saHost/mikros/exercices/maya/rendu/exercice01/
+
+    exemple du nom de fichier : salexis.py
+
+    merci a vous et bonne chance :)
+
 """
 import maya.cmds as mc
 import time
