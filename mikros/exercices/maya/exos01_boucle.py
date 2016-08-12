@@ -1,27 +1,47 @@
-__author__ = 'host3d'
+"""
+EXERCICE 01 :
+    Creer une sphere et faire un extrude de taille aleatoire sur chaque face.
+
+    Il est interdit d'utiliser le module random ;).
+
+    Consigne + :
+         - le code doit cleaner se qui a ete creer si on le relance.
+
+    Aide commande Maya :
+        penser a regarder la doc ou le quick help de chacune de ses fonctions.
+
+        objExists : permet de savoir si un node exists
+        delete : permet de supprimer un node
+        polyShpere : permet de creer une sphere
+        polyEvaluate : permet de recuperer des information sur un meshe.
+        polyExtrudeFacet : Permet de faire un extrude.
+        refresh : permet de fair un refresh dans maya.
+
+    Aide python :
+        range : En lui donner un chiffre il nous retourne une liste de chiffre de la taille du fchiffre donnee
+            exemple :
+                range(10)
+                -> result : [0,1,2,3,4,5,6,7,8,9]
+
+"""
 import maya.cmds as mc
+import time
+t = time.time()
 
-#mc.file(newFile=True, force=True)
-if mc.objExists("maSphere"):
-    mc.delete("maSphere")
+#################################################
+#             CODER EN DESSOUS                  #
+#################################################
 
-sub = 20
-coef = 0.001
-radius = 1
-sphere = mc.polySphere(name="maSphere", sa=sub, sh=sub, radius=radius)
 
-mc.setAttr('%s.ty' % sphere[0], radius)
-mc.select(sphere)
-for i in range( mc.polyEvaluate(f=True)):
-    if i%2 == 0:
-        val = (coef * i) / 2
-    elif i%3 == 0:
-        val = (coef * i) / 3
-    elif i%4 == 0:
-        val = (coef * i) / 4
-    else:
-        val = coef * i
-    node = '%s.f[%s]' % (sphere[0], i)
-    mc.polyExtrudeFacet(node, lt=(0,0,val), ls=(0.01,0.01,0.01) )
-    mc.delete(sphere[0],ch=True)
-    mc.refresh()
+# Good luck :)
+mc.polySphere(name="maSphere")
+for i in range(mc.polyEvaluate(face=True)):
+    print 'Face :' + str(i)
+
+
+
+#################################################
+#             CODER AU DESSUS                   #
+#################################################
+
+print "Code execute in %.3f sec" % (time.time() - t)

@@ -32,7 +32,6 @@ print "###################"
 # BOUCLE
 
 # FOR
-
 import maya.cmds as mc
 nodesSelected = mc.ls(selection=True)
 
