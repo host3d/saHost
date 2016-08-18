@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file:///datas/salexis/packages/.idea/packages.iml" filepath="/datas/salexis/packages/.idea/packages.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/saHost.iml" filepath="$PROJECT_DIR$/.idea/saHost.iml" />
     </modules>
   </component>
